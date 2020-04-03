@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".currentMoonState.CurrentMoonStateFragment">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="143dp"
+        android:text="Faza księżyca"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/moon_pic"
+        android:layout_width="@dimen/moon_pic_dim"
+        android:layout_height="@dimen/moon_pic_dim"
+        android:layout_marginStart="77dp"
+        android:layout_marginEnd="78dp"
+        android:contentDescription="@null"
+
+        android:src="@drawable/n10p"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.13999999" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="324dp"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moon_pic"
+        app:layout_constraintVertical_bias="0.454">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_normal"
+                android:text="Dzisiaj: " />
+
+            <TextView
+                android:id="@+id/full_moon_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40%" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_normal"
+                android:text="Nestępny nów" />
+
+            <TextView
+                android:id="@+id/next_new_moon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12.03.2020" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_normal"
+                android:text="Następna pełnia" />
+
+            <TextView
+                android:id="@+id/next_full_moon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9.04.2020" />
+        </TableRow>
+
+        <Button
+            android:id="@+id/full_moons_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pełnie w roku" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

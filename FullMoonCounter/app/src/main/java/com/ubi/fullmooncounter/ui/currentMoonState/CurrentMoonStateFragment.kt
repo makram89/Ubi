@@ -1,7 +1,5 @@
 package com.ubi.fullmooncounter.ui.currentMoonState
 
-import java.time.LocalDateTime
-
 
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.ubi.fullmooncounter.R
 import com.ubi.fullmooncounter.utils.Algorithms
+import kotlinx.android.synthetic.main.current_moon_state_frament_fragment.*
+import java.time.LocalDate
 
 class CurrentMoonStateFragment : Fragment() {
 
@@ -32,15 +32,26 @@ class CurrentMoonStateFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, CurrentMoonStateViewModelFactory(algorithms)).get(CurrentMoonStateViewModel::class.java)
 
-        val currentDate = LocalDateTime.now()
-//        viewModel.calculateState(currentDate.year, currentDate.monthValue, currentDate.dayOfMonth)
+        val currentDate = LocalDate.now()
 
-        val moonPhase = viewModel.getMoonPhase(currentDate.year, currentDate.monthValue, currentDate.dayOfMonth)
-        Log.d("MoonPhase", moonPhase.toString())
+        val moonPhase = viewModel.getMoonPhase(currentDate.year, currentDate.monthValue, currentDate.dayOfMonth).toInt()
+        bind(moonPhase,currentDate)
 
     }
 
+    private fun bind(moonPhase : Int, currentDate : LocalDate)
+    {
+        val percent= ((moonPhase.toLong()/30.0)*100.0).toInt().toString()
 
+        val daysTillFull = if(moonPhase <=15) {
+            15 - moonPhase
+        } else{
+            15 + (30-moonPhase)
+        }
+        full_moon_progress.text = "$percent%"
+        last_new_moon.text = currentDate.minusDays(moonPhase.toLong()).toString()
+        next_full_moon.text = currentDate.plusDays(daysTillFull.toLong()).toString()
+    }
 
 
 }

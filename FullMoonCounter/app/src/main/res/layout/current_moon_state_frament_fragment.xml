@@ -84,11 +84,11 @@
                 android:layout_margin="@dimen/margin_normal"
                 android:autoSizeTextType="uniform"
                 android:autoText="true"
-                android:text="Nestępny nów:"
+                android:text="Poprzedni nów:"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/next_new_moon"
+                android:id="@+id/last_new_moon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:autoSizeTextType="uniform"

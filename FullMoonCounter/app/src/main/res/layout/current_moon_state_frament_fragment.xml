@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".currentMoonState.CurrentMoonStateFragment">
+    tools:context=".ui.currentMoonState.CurrentMoonStateFragment">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="142dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="143dp"
         android:text="Faza księżyca"
         android:textSize="20dp"
@@ -24,20 +24,19 @@
         android:layout_width="@dimen/moon_pic_dim"
         android:layout_height="@dimen/moon_pic_dim"
         android:layout_marginStart="77dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="78dp"
-        android:contentDescription="@null"
 
+        android:contentDescription="@null"
         android:src="@drawable/n10p"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.13999999" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="324dp"
-        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_large"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,13 +56,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
-                android:text="Dzisiaj: " />
+                android:autoSizeTextType="uniform"
+                android:autoText="true"
+                android:text="Dzisiaj: "
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/full_moon_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="40%" />
+                android:autoSizeTextType="uniform"
+                android:autoText="true"
+                android:text="40%"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -77,13 +82,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
-                android:text="Nestępny nów" />
+                android:autoSizeTextType="uniform"
+                android:autoText="true"
+                android:text="Nestępny nów:"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/next_new_moon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12.03.2020" />
+                android:autoSizeTextType="uniform"
+                android:autoText="true"
+                android:text="12.03.2020"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -97,13 +108,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
-                android:text="Następna pełnia" />
+                android:autoSizeTextType="uniform"
+                android:autoText="true"
+                android:text="Następna pełnia"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/next_full_moon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="9.04.2020" />
+                android:autoSizeTextType="uniform"
+                android:autoText="true"
+                android:text="9.04.2020"
+                android:textSize="18sp" />
         </TableRow>
 
         <Button

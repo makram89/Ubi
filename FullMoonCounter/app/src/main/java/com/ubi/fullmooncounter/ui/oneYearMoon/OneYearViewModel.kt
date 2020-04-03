@@ -1,4 +1,4 @@
-package com.ubi.fullmooncounter.oneYearMoon
+package com.ubi.fullmooncounter.ui.oneYearMoon
 
 import androidx.lifecycle.ViewModel
 

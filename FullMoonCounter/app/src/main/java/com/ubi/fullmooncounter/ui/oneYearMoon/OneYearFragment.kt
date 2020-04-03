@@ -1,4 +1,4 @@
-package com.ubi.fullmooncounter.currentMoonState
+package com.ubi.fullmooncounter.ui.oneYearMoon
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,24 +9,24 @@ import android.view.ViewGroup
 
 import com.ubi.fullmooncounter.R
 
-class CurrentMoonStateFragment : Fragment() {
+class OneYearFragment : Fragment() {
 
     companion object {
-        fun newInstance() = CurrentMoonStateFragment()
+        fun newInstance() = OneYearFragment()
     }
 
-    private lateinit var viewModel: CurrentMoonStateFragmentViewModel
+    private lateinit var viewModel: OneYearViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.current_moon_state_frament_fragment, container, false)
+        return inflater.inflate(R.layout.one_year_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CurrentMoonStateFragmentViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(OneYearViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

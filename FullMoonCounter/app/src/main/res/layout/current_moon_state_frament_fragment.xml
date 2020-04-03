@@ -26,12 +26,11 @@
         android:layout_marginStart="77dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="78dp"
-
-        android:contentDescription="@null"
-        android:src="@drawable/n10p"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:src="@drawable/n15" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -57,7 +56,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 android:autoSizeTextType="uniform"
-                android:autoText="true"
                 android:text="Dzisiaj: "
                 android:textSize="18sp" />
 
@@ -66,7 +64,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:autoSizeTextType="uniform"
-                android:autoText="true"
                 android:text="40%"
                 android:textSize="18sp" />
         </TableRow>
@@ -83,7 +80,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 android:autoSizeTextType="uniform"
-                android:autoText="true"
                 android:text="Poprzedni nów:"
                 android:textSize="18sp" />
 
@@ -92,7 +88,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:autoSizeTextType="uniform"
-                android:autoText="true"
                 android:text="12.03.2020"
                 android:textSize="18sp" />
         </TableRow>
@@ -109,7 +104,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 android:autoSizeTextType="uniform"
-                android:autoText="true"
                 android:text="Następna pełnia"
                 android:textSize="18sp" />
 
@@ -118,7 +112,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:autoSizeTextType="uniform"
-                android:autoText="true"
                 android:text="9.04.2020"
                 android:textSize="18sp" />
         </TableRow>

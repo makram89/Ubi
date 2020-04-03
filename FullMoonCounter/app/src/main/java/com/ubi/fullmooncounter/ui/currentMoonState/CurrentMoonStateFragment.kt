@@ -1,12 +1,14 @@
 package com.ubi.fullmooncounter.ui.currentMoonState
 
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 
 import com.ubi.fullmooncounter.R
@@ -51,6 +53,14 @@ class CurrentMoonStateFragment : Fragment() {
         full_moon_progress.text = "$percent%"
         last_new_moon.text = currentDate.minusDays(moonPhase.toLong()).toString()
         next_full_moon.text = currentDate.plusDays(daysTillFull.toLong()).toString()
+        //TODO check north or south
+        //setting image
+        val picName = "n$moonPhase"
+        context?.resources?.getIdentifier(picName,"drawable", context?.packageName)?.let {
+            moon_pic.setImageResource(
+                it
+            )
+        }
     }
 
 

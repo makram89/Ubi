@@ -7,9 +7,9 @@ import kotlin.math.sin
 
 class Algorithms {
 
-    fun julday(_year: Int, month: Int, day: Int): Double {
+    private fun julday(_year: Int, month: Int, day: Int): Double {
 
-        var year= _year
+        var year = _year
         if (year < 0) {
             year++
         }
@@ -30,7 +30,7 @@ class Algorithms {
         return jul;
     }
 
-    fun Trig2(year: Int, month: Int, day: Int): Double {
+    fun trig2(year: Int, month: Int, day: Int): Double {
 
         val n = floor(12.37 * (year - 1900 + ((1.0 * month - 0.5) / 12.0)))
         val RAD = 3.14159265 / 180.0
@@ -44,6 +44,18 @@ class Algorithms {
         val j1 = julday(year, month, day)
         val jd = (2415020 + 28 * n) + i
         return (j1 - jd + 30) % 30
+    }
+
+    fun trig1(year: Int, month: Int, day: Int): Double {
+        return 0.0
+    }
+
+    fun conway(year: Int, month: Int, day: Int): Double {
+        return 0.0
+    }
+
+    fun simple(year: Int, month: Int, day: Int): Double {
+        return 0.0
     }
 
 

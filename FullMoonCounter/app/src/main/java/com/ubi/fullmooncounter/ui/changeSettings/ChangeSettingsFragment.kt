@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
 import com.ubi.fullmooncounter.MainActivity
@@ -32,7 +33,19 @@ class ChangeSettingsFragment : DialogFragment() {
         setLetterHemi()
         context?.let { populateSpinner(it) }
         change_hemi.setOnClickListener { onHemiClick() }
+        algorithm_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
 
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+               MainActivity.Singletons.algorithmName = algorithm_spinner.adapter.getItem(position) as MainActivity.AlgorithmsNames
+            }
+        }
     }
 
     fun onHemiClick() {
@@ -56,11 +69,10 @@ class ChangeSettingsFragment : DialogFragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Set Adapter to Spinner
         algorithm_spinner.adapter = adapter
-        val value = adapter.getPosition(MainActivity.Singletons.algorithmName)
+        val value = adapter.getPosition(MainActivity.algorithmName)
         algorithm_spinner.setSelection(value)
 
-
-    }
+        }
 
 
 }

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object Singletons {
         var isNorthHemi = true
-        val algorithmName = AlgorithmsNames.TRIG2
+        var algorithmName = AlgorithmsNames.TRIG2
     }
 
     enum class AlgorithmsNames {

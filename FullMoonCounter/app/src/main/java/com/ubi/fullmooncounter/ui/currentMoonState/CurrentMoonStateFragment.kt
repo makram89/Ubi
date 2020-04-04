@@ -9,15 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ubi.fullmooncounter.MainActivity
 import com.ubi.fullmooncounter.R
+import com.ubi.fullmooncounter.ui.changeSettings.ChangeSettingsFragment
 import com.ubi.fullmooncounter.ui.oneYearMoon.OneYearFragment
 import com.ubi.fullmooncounter.utils.Algorithms
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.current_moon_state_frament_fragment.*
 import java.time.LocalDate
 
 class CurrentMoonStateFragment : Fragment() {
 
     private lateinit var viewModel: CurrentMoonStateViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +45,8 @@ class CurrentMoonStateFragment : Fragment() {
         full_moons_button.setOnClickListener {
             onClickButton()
         }
+        settings_button_1.setOnClickListener { settingsClick() }
+
 
 
     }
@@ -59,10 +62,9 @@ class CurrentMoonStateFragment : Fragment() {
         full_moon_progress.text = "$percent%"
         last_new_moon.text = currentDate.minusDays(moonPhase.toLong()).toString()
         next_full_moon.text = currentDate.plusDays(daysTillFull.toLong()).toString()
-        //TODO check north or south
+
         //setting image
         val picName = if (MainActivity.Singletons.isNorthHemi) "n$moonPhase" else "s$moonPhase"
-
         context?.resources?.getIdentifier(picName, "drawable", context?.packageName)?.let {
             moon_pic.setImageResource(
                 it
@@ -77,6 +79,16 @@ class CurrentMoonStateFragment : Fragment() {
             .addToBackStack("app")
             .commit()
     }
+
+    private fun settingsClick() {
+        val fragmentTransaction =
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(id, ChangeSettingsFragment())
+            .addToBackStack("app")
+            .commit()
+    }
+
+
 
 
 }

@@ -10,8 +10,10 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ubi.fullmooncounter.MainActivity
 
 import com.ubi.fullmooncounter.R
+import com.ubi.fullmooncounter.ui.changeSettings.ChangeSettingsFragment
 import com.ubi.fullmooncounter.utils.Algorithms
 import kotlinx.android.synthetic.main.one_year_fragment.*
 import java.time.LocalDate
@@ -39,6 +41,7 @@ class OneYearFragment : Fragment() {
 
         plus_year_button.setOnClickListener{onPlusClick()}
         minnus_year_button.setOnClickListener{onMinusClick()}
+        settings_button_2.setOnClickListener { settingsClick() }
 
         viewModel.dates.observe(viewLifecycleOwner, Observer {dates ->
             rv_full_moon_dates!!.also {
@@ -52,7 +55,7 @@ class OneYearFragment : Fragment() {
     }
 
 
-    fun onPlusClick(){
+    private fun onPlusClick(){
         val yearFiled = year_field
         var cYear = yearFiled.text.toString().toInt()
         if(cYear <2200)
@@ -67,7 +70,7 @@ class OneYearFragment : Fragment() {
 
     }
 
-    fun onMinusClick(){
+    private fun onMinusClick(){
         val yearFiled = year_field
         var cYear = yearFiled.text.toString().toInt()
         if(cYear >1600)
@@ -79,6 +82,14 @@ class OneYearFragment : Fragment() {
         {
             Toast.makeText(requireContext(),"Year must be in range 1900-2200",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun settingsClick() {
+        val fragmentTransaction =
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(id, ChangeSettingsFragment())
+            .addToBackStack("app")
+            .commit()
     }
 
 }

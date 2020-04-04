@@ -10,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
+import com.ubi.fullmooncounter.MainActivity
 
 import com.ubi.fullmooncounter.R
+import com.ubi.fullmooncounter.ui.oneYearMoon.OneYearFragment
 import com.ubi.fullmooncounter.utils.Algorithms
 import kotlinx.android.synthetic.main.current_moon_state_frament_fragment.*
 import java.time.LocalDate
@@ -39,6 +41,10 @@ class CurrentMoonStateFragment : Fragment() {
         val moonPhase = viewModel.getMoonPhase(currentDate.year, currentDate.monthValue, currentDate.dayOfMonth).toInt()
         bind(moonPhase,currentDate)
 
+        full_moons_button.setOnClickListener{
+            onClickButton()
+        }
+
     }
 
     private fun bind(moonPhase : Int, currentDate : LocalDate)
@@ -61,6 +67,14 @@ class CurrentMoonStateFragment : Fragment() {
                 it
             )
         }
+    }
+
+    private fun onClickButton(){
+        val fragmentTransaction =
+            (context as MainActivity).supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(id, OneYearFragment())
+            .addToBackStack("app")
+            .commit()
     }
 
 

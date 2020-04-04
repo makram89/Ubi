@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.oneYearMoon.OneYearFragment">
+    tools:context=".ui.oneYearMoon.OneYearFragment" >
 
-    <TextView
+    <TableRow
+        android:id="@+id/tableRow"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="6"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/year_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:ems="10"
+            android:inputType="number"
+            android:text="2019" />
+
+        <Button
+            android:id="@+id/plus_year_button"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="+"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/minnus_year_button"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="-"
+            android:textSize="24sp" />
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_full_moon_dates"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tableRow"
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="12"
+        tools:layout_editor_absoluteX="0dp"
+        tools:listitem="@layout/recycler_view_date_item" />
+</androidx.constraintlayout.widget.ConstraintLayout>

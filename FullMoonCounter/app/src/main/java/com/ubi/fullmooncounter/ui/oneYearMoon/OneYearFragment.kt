@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 
 import com.ubi.fullmooncounter.R
+import com.ubi.fullmooncounter.utils.Algorithms
 
 class OneYearFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = OneYearFragment()
-    }
 
     private lateinit var viewModel: OneYearViewModel
 
@@ -26,8 +24,12 @@ class OneYearFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(OneYearViewModel::class.java)
-        // TODO: Use the ViewModel
+        val algorithms = Algorithms()
+
+        viewModel = ViewModelProvider(this, OneYearViewModelFactory(algorithms)).get(
+            OneYearViewModel::class.java)
+
+
     }
 
 }

@@ -117,7 +117,7 @@
         </TableRow>
 
         <Button
-            android:id="@+id/full_moons_all"
+            android:id="@+id/full_moons_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pełnie w roku" />

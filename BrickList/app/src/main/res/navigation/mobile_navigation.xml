@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/projectsList">
+    <fragment
+        android:id="@+id/projectsList"
+        android:name="com.app.bricklist.ui.projectslist.ProjectsListFragment"
+        android:label="projects_list_fragment"
+        tools:layout="@layout/projects_list_fragment" >
+        <action
+            android:id="@+id/action_projectsList_to_addProject"
+            app:destination="@id/addProject" />
+        <action
+            android:id="@+id/action_projectsList_to_projectDetails"
+            app:destination="@id/projectDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProject"
+        android:name="com.app.bricklist.ui.addproject.AddProject"
+        android:label="add_project_fragment"
+        tools:layout="@layout/add_project_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.app.bricklist.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/projectDetails"
+        android:name="com.app.bricklist.ui.projectdetails.ProjectDetails"
+        android:label="project_details_fragment"
+        tools:layout="@layout/project_details_fragment" />
+    <action
+        android:id="@+id/action_global_settingsFragment"
+        app:destination="@id/settingsFragment"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:launchSingleTop="true" />
+</navigation>

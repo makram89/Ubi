@@ -23,13 +23,11 @@ class MainActivity : AppCompatActivity() {
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
 //        }
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
 
         val navController = findNavController(R.id.nav_host_fragment)
-
+        fab.setOnClickListener {
+            navController.navigate(R.id.action_projectsList_to_addProject)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

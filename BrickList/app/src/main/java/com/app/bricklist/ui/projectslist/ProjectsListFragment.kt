@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.bricklist.R
 import com.app.bricklist.data.AppRepository
 import com.app.bricklist.data.db.AppDatabase
+import com.app.bricklist.data.network.BrickApi
 
 class ProjectsListFragment : Fragment(), BrickListener {
 
@@ -25,9 +27,23 @@ class ProjectsListFragment : Fragment(), BrickListener {
         savedInstanceState: Bundle?
     ): View? {
 
-//        val api = PlaceholderApi(this.resources.getString(R.string.base_url))
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val url = preferences.getString("URL","")
+        val api : BrickApi
         appDatabase = AppDatabase.getInstance(inflater.context)
-        repository = AppRepository(appDatabase)
+        if ( url != null && url.isNotEmpty())
+        {
+            api = BrickApi(url as String)
+            repository = AppRepository(appDatabase, api)
+        }
+        else{
+            api = BrickApi(this.resources.getString(R.string.base_url))
+            repository = AppRepository(appDatabase, api)
+            Log.d("ERROR", "Incorrect URL, using default")
+        }
+
+
+
 
         return inflater.inflate(R.layout.projects_list_fragment, container, false)
     }

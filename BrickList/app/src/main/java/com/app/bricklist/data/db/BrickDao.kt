@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.app.bricklist.data.models.Inventories
+import com.app.bricklist.data.models.InventoriesParts
 
 @Dao
 interface BrickDao{
@@ -24,5 +25,11 @@ interface BrickDao{
 //    count bricks
     @Query("SELECT count(*) FROM codes")
     fun countCodes():Int
+
+//    Bricks for project
+    @Query("SELECT * from inventoriesParts where inventoriesParts.InventoryID = :id")
+    fun getProjectBricks(id : Int) : List<InventoriesParts>
+
+//
 
 }

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.projectdetails.ProjectDetails">
+    tools:context=".ui.projectdetails.ProjectDetailsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

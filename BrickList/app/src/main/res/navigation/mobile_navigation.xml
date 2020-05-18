@@ -11,14 +11,16 @@
         tools:layout="@layout/projects_list_fragment" >
         <action
             android:id="@+id/action_projectsList_to_addProject"
-            app:destination="@id/addProject" />
+            app:destination="@id/addProject"
+            app:launchSingleTop="true" />
         <action
             android:id="@+id/action_projectsList_to_projectDetails"
-            app:destination="@id/projectDetails" />
+            app:destination="@id/projectDetails"
+            app:launchSingleTop="true" />
     </fragment>
     <fragment
         android:id="@+id/addProject"
-        android:name="com.app.bricklist.ui.addproject.AddProject"
+        android:name="com.app.bricklist.ui.addproject.AddProjectFragment"
         android:label="add_project_fragment"
         tools:layout="@layout/add_project_fragment" />
     <fragment
@@ -27,9 +29,13 @@
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/projectDetails"
-        android:name="com.app.bricklist.ui.projectdetails.ProjectDetails"
+        android:name="com.app.bricklist.ui.projectdetails.ProjectDetailsFragment"
         android:label="project_details_fragment"
-        tools:layout="@layout/project_details_fragment" />
+        tools:layout="@layout/project_details_fragment" >
+        <argument
+            android:name="InventoryID"
+            app:argType="integer" />
+    </fragment>
     <action
         android:id="@+id/action_global_settingsFragment"
         app:destination="@id/settingsFragment"

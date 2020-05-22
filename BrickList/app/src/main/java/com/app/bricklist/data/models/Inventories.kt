@@ -6,11 +6,11 @@ import kotlinx.android.parcel.Parcelize
 @Entity(
     tableName = "inventories"
 )
-@Parcelize
+
 data class Inventories(
-    var Active: Int = 1,
+    var Active: Int,
     var LastAccessed: Int,
     var Name: String,
     @PrimaryKey
     var id: Int
-) : Parcelable
+)

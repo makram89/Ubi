@@ -5,15 +5,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.bricklist.R
 import com.app.bricklist.data.AppRepository
 import com.app.bricklist.data.db.AppDatabase
+import com.app.bricklist.data.models.Inventories
 import com.app.bricklist.data.network.BrickApi
 
 class ProjectsListFragment : Fragment(), BrickListener {
@@ -68,12 +71,16 @@ class ProjectsListFragment : Fragment(), BrickListener {
 
     }
 
-    override fun onProjectClick(itemView: View, item: Any) {
-//        TODO("Not yet implemented")
+    override fun onProjectClick(itemView: View, item:Inventories ) {
+        val bundle = bundleOf("InventoryID" to item.id)
+        findNavController().navigate(R.id.action_projectsList_to_projectDetails, bundle)
         Log.d("CHECK", "Im In")
     }
 
-    override fun onLongClick() {
+    override fun onLongClick(
+        itemView: View,
+        item: Inventories
+    ) {
         Log.d("CHECK", "Im In long")
 //        TODO("Not yet implemented")
     }

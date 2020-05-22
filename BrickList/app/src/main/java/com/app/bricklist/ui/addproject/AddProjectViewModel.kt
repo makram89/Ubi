@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.bricklist.data.AppRepository
+import com.app.bricklist.data.models.Inventories
+import com.app.bricklist.data.models.InventoriesParts
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,8 +48,12 @@ class AddProjectViewModel(private val repository: AppRepository) : ViewModel() {
 
 
     //TODO
-    fun add(inventory: Any) {
-//Inserrt through repo
-//        I and IP
-    }
+    fun addProject(inventory: Inventories) = repository.addProject(inventory)
+
+    fun addPart(inventoriesParts: InventoriesParts)
+        =repository.addPart(inventoriesParts)
+
+    fun counter() = repository.counter()
+    fun partsCounter() = repository.partsCounter()
+
 }

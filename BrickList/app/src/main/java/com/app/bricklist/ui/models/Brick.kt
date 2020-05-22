@@ -9,7 +9,7 @@ data class Brick(
     val colorName: String,
     var colorNamePL: String? = null,
 
-    var Extra: Int = 0,
+    var Extra: String = "0",
     val InventoryID: Int,
 
     val ItemID: Int,

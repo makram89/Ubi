@@ -1,7 +1,6 @@
 package com.app.bricklist.ui.projectslist
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.bricklist.data.models.Inventories
@@ -33,12 +32,18 @@ class ProjectsAdapter(
     }
 
     class ProjectItemHolder(
-        private val binding: RvItemProjectBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val binding: RvItemProjectBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
         //        TODO add model instead of inventories
         fun bind(item: Inventories, listener: BrickListener) {
             binding.item = item
             binding.executePendingBindings()
             itemView.setOnClickListener { listener.onProjectClick(itemView, item) }
+            itemView.setOnLongClickListener {
+                listener.onLongClick(itemView, item)
+                return@setOnLongClickListener true
+
+            }
         }
     }
 

@@ -9,12 +9,12 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class InventoriesParts(
     var ColorID: Int,
-    var Extra: Int = 0,
+    var Extra: String = "0",
     var InventoryID: Int,
-    var ItemID: Int,
+    var ItemID: String,
     var QuantityInSet: Int,
     var QuantityInStore: Int = 0,
-    var TypeID: Int,
+    var TypeID: String,
     @PrimaryKey
     var id: Int
 ) : Parcelable

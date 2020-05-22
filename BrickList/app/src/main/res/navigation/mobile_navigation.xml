@@ -12,17 +12,26 @@
         <action
             android:id="@+id/action_projectsList_to_addProject"
             app:destination="@id/addProject"
-            app:launchSingleTop="true" />
+            app:launchSingleTop="true"
+            app:popUpTo="@id/addProject"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_projectsList_to_projectDetails"
             app:destination="@id/projectDetails"
-            app:launchSingleTop="true" />
+            app:launchSingleTop="true"
+            app:popUpTo="@id/projectDetails"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/addProject"
         android:name="com.app.bricklist.ui.addproject.AddProjectFragment"
         android:label="add_project_fragment"
-        tools:layout="@layout/add_project_fragment" />
+        tools:layout="@layout/add_project_fragment" >
+        <action
+            android:id="@+id/action_addProject_to_projectsList"
+            app:destination="@id/projectsList"
+            app:launchSingleTop="false" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.app.bricklist.ui.settings.SettingsFragment"

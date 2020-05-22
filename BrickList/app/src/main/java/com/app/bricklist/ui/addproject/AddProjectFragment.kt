@@ -8,16 +8,24 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.app.bricklist.R
 import com.app.bricklist.data.AppRepository
 import com.app.bricklist.data.db.AppDatabase
+import com.app.bricklist.data.models.Inventories
+import com.app.bricklist.data.models.InventoriesParts
 import com.app.bricklist.data.network.BrickApi
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.add_project_fragment.*
-import org.json.JSONObject
-import org.json.XML
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+
+import org.w3c.dom.Element
+import org.w3c.dom.Node
 import org.xml.sax.InputSource
 import java.io.StringReader
+
 import javax.xml.parsers.DocumentBuilderFactory
 
 
@@ -72,40 +80,97 @@ class AddProjectFragment : Fragment() {
 
     fun onCheckClick() {
         project_id_field.isEnabled = false
-        val id =project_id_field.text.toString().toInt()
+        val id = project_id_field.text.toString().toInt()
         viewModel.check(id)
     }
 
-    fun onAddClick(){
-//        well now succky things
+    fun onAddClick() {
+
+        GlobalScope.launch {
+            //        TODO STAMP
+            val projectName = name_field.text.toString()
+            var project = Inventories(
+                Active = 1,
+                LastAccessed = 1000,
+                Name = projectName,
+                id = viewModel.counter() + 1
+            )
+            val id = viewModel.addProject(project).toInt()
+            Log.d("success!!", id.toString())
+
+            val dbFactory = DocumentBuilderFactory.newInstance()
+            val dBuilder = dbFactory.newDocumentBuilder()
+            val xmlInput = InputSource(StringReader(viewModel.xmlLive.value.toString()))
+            val doc = dBuilder.parse(xmlInput)
+
+            val element = doc.documentElement
+            element.normalize()
+            val nList = doc.getElementsByTagName("ITEM")
 
 
-        val dbFactory = DocumentBuilderFactory.newInstance()
-        val dBuilder = dbFactory.newDocumentBuilder()
-        val xmlInput = InputSource(StringReader(viewModel.xmlLive.value.toString()))
-        val doc = dBuilder.parse(xmlInput)
+            var parts = viewModel.partsCounter()
 
-        val element = doc.documentElement
-        element.normalize()
-        val nList = doc.getElementsByTagName("ITEM")
-//        for (i in 0 until nList.length) {
-//            val node = nList.item(i)
-//
-//        }
-        println(nList.length)
-        val sampleXml = viewModel.xmlLive.value.toString()
-        var jsonObj: JSONObject? = null
-        try {
-            jsonObj = XML.toJSONObject(sampleXml)
-        } catch (e: Throwable) {
-            Log.e("JSON exception", e.message)
-            e.printStackTrace()
+            for (i in 0 until nList.length) {
+                val itemNode: Node = nList.item(i)
+                if (itemNode.nodeType == Node.ELEMENT_NODE) {
+                    val elem = itemNode as Element
+                    val children = elem.childNodes
+
+                    var currentType: String? = null
+                    var currentId: String? = null
+                    var currentQty: String? = null
+                    var currentColor: String? = null
+                    var currentExtra: String? = null
+                    var currentAltenate: String? = null
+
+                    for (j in 0 until children.length) {
+                        val node = children.item(j)
+                        if (node is Element) {
+                            when (node.nodeName) {
+                                "ITEMTYPE" -> {
+                                    currentType = node.textContent
+                                }
+                                "ITEMID" -> {
+                                    currentId = node.textContent
+                                }
+                                "QTY" -> {
+                                    currentQty = node.textContent
+                                }
+                                "COLOR" -> {
+                                    currentColor = node.textContent
+                                }
+                                "EXTRA" -> {
+                                    currentExtra = node.textContent
+                                }
+                                "ALTERNATE" -> {
+                                    currentAltenate = node.textContent
+                                }
+                            }
+                        }
+                    }
+                    if (currentAltenate.toString() == "N") {
+                        val id_p = viewModel.addPart(
+                            InventoriesParts(
+                                currentColor.toString().toInt(),
+                                currentExtra.toString(),
+                                id,
+                                currentId.toString(),
+                                currentQty.toString().toInt(),
+                                TypeID = currentType.toString(),
+                                id = parts
+                            )
+                        )
+                        Log.d("PART loaded", id_p.toString())
+                        parts++
+
+                    }
+
+                }
+
+            }
+            findNavController().navigate(R.id.action_addProject_to_projectsList)
+            Snackbar.make(super.requireView(), "Project sucesfully added", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
         }
-
-//        Log.d("XML", sampleXml)
-
-        Log.d("JSON", jsonObj.toString())
-
     }
-
 }

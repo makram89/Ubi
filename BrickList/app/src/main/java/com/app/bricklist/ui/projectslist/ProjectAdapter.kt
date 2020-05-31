@@ -8,7 +8,7 @@ import com.app.bricklist.databinding.RvItemProjectBinding
 
 class ProjectsAdapter(
     var projectsDataset: ArrayList<Inventories>,
-    private val listener: BrickListener
+    private val listener: ProjectListener
 ) : RecyclerView.Adapter<ProjectsAdapter.ProjectItemHolder>() {
     private val fullDataset = projectsDataset
 
@@ -35,7 +35,7 @@ class ProjectsAdapter(
         private val binding: RvItemProjectBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         //        TODO add model instead of inventories
-        fun bind(item: Inventories, listener: BrickListener) {
+        fun bind(item: Inventories, listener: ProjectListener) {
             binding.item = item
             binding.executePendingBindings()
             itemView.setOnClickListener { listener.onProjectClick(itemView, item) }

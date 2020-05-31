@@ -18,8 +18,9 @@ import com.app.bricklist.data.AppRepository
 import com.app.bricklist.data.db.AppDatabase
 import com.app.bricklist.data.models.Inventories
 import com.app.bricklist.data.network.BrickApi
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class ProjectsListFragment : Fragment(), BrickListener {
+class ProjectsListFragment : Fragment(), ProjectListener {
 
     private lateinit var viewModel: ProjectsListViewModel
     private lateinit var appDatabase: AppDatabase
@@ -31,15 +32,13 @@ class ProjectsListFragment : Fragment(), BrickListener {
     ): View? {
 
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val url = preferences.getString("URL","")
-        val api : BrickApi
+        val url = preferences.getString("URL", "")
+        val api: BrickApi
         appDatabase = AppDatabase.getInstance(inflater.context)
-        if ( url != null && url.isNotEmpty())
-        {
-            api = BrickApi(url as String)
+        if (url != null && url.isNotEmpty()) {
+            api = BrickApi(url)
             repository = AppRepository(appDatabase, api)
-        }
-        else{
+        } else {
             api = BrickApi(this.resources.getString(R.string.base_url))
             repository = AppRepository(appDatabase, api)
             Log.d("ERROR", "Incorrect URL, using default")
@@ -61,17 +60,22 @@ class ProjectsListFragment : Fragment(), BrickListener {
 
         viewModel.fetchProjects()
 
+        val fab: FloatingActionButton = requireView().findViewById(R.id.fab)
+        fab.setOnClickListener {
+            findNavController().navigate(R.id.action_projectsList_to_addProject)
+        }
+
         viewModel.liveProjects.observe(viewLifecycleOwner, Observer { projectList ->
             view?.findViewById<RecyclerView>(R.id.rv_projects).also {
                 it?.adapter = ProjectsAdapter(projectList, this@ProjectsListFragment)
                 it?.layoutManager = LinearLayoutManager(requireContext())
             }
-            Log.d("CHECK",projectList.size.toString())
+            Log.d("CHECK", projectList.size.toString())
         })
 
     }
 
-    override fun onProjectClick(itemView: View, item:Inventories ) {
+    override fun onProjectClick(itemView: View, item: Inventories) {
         val bundle = bundleOf("InventoryID" to item.id)
         findNavController().navigate(R.id.action_projectsList_to_projectDetails, bundle)
         Log.d("CHECK", "Im In")

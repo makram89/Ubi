@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
   <data>
-
     <import type="com.app.bricklist.ui.models.Brick" />
     <variable
         name="brick"
@@ -15,29 +14,33 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8DFF0026"
+        android:defaultFocusHighlightEnabled="true"
+        android:duplicateParentState="false"
+        android:fadingEdge="horizontal"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background='@{(brick.quantityInStore >= brick.quantityInSet) ? @drawable/enough : @drawable/notEnoughRed }'
+        >
 
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginVertical="5dp"
+            android:layout_marginVertical="7dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"            >
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/del_part_in_store"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="-" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/add_part_in_store"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
@@ -69,25 +72,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
+                android:text='@{(brick.itemNamePL != null ) ? brick.itemNamePL : brick.itemName }'
                 android:textSize="18sp"
-                tools:text="Brick_name with dims and with additional prams takes two lines"
-                android:text="@{brick.itemNamePL != null ? brick.itemNamePL : brick.itemName "/>
+                tools:text="Brick_name with dims and with additional prams takes two lines" />
 
             <TextView
                 android:id="@+id/brick_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
+                android:text='@{ brick.colorName +" "+ "[" + brick.itemID + "]"}'
                 android:textSize="18sp"
-                tools:text="brick_code_with_color"
-                android:text="@{ brick.colorName +' '+ '[' + brick.typeName + ']'}"
-                />
+                tools:text="brick_code_with_color" />
 
             <TextView
                 android:id="@+id/brick_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{ brick.QuantityInStore + `of` + brick.QuantityInSet "
+                android:text='@{ brick.quantityInStore + " of " + brick.quantityInSet }'
                 android:textSize="18sp" />
 
         </LinearLayout>

@@ -1,21 +1,24 @@
 package com.app.bricklist.ui.projectdetails
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.app.bricklist.R
 import com.app.bricklist.data.AppRepository
 import com.app.bricklist.data.db.AppDatabase
 import com.app.bricklist.data.network.BrickApi
+import com.app.bricklist.ui.models.Brick
 
-class ProjectDetailsFragment : Fragment() {
+class ProjectDetailsFragment : Fragment(), BrickListener {
 
     companion object {
         fun newInstance() = ProjectDetailsFragment()
@@ -54,8 +57,44 @@ class ProjectDetailsFragment : Fragment() {
                 this,
                 ProjectDetailsVMFactory(repository)
             ).get(ProjectDetailsViewModel::class.java)
-        val arg = arguments?.get("InventoryID")
-        Log.d("WATCHA", arg.toString())
+        val projectID = arguments?.getInt("InventoryID")
+
+        if (projectID != null) {
+            viewModel.fetchBricks(projectID)
+        }
+
+        viewModel.liveBricks.observe(viewLifecycleOwner, Observer { bricks ->
+            view?.findViewById<RecyclerView>(R.id.rv_brick_list).also {
+                it?.adapter = BricksListRVAdapter(bricks, this@ProjectDetailsFragment)
+                it?.layoutManager = LinearLayoutManager(requireContext())
+            }
+            Log.d("CHECKbricks", bricks.size.toString())
+        })
+
     }
+
+    override fun onPlusClick(brick: Brick) {
+
+        if (brick.QuantityInStore < brick.QuantityInSet)
+        {
+            brick.QuantityInStore++
+            valueUpdate(brick)
+        }
+    }
+
+    override fun onMinusClick(brick: Brick) {
+
+        if (brick.QuantityInStore > 0)
+        {
+            brick.QuantityInStore--
+            valueUpdate(brick)
+        }
+    }
+
+    override fun valueUpdate(brick: Brick) {
+        viewModel.updateBrick(brick)
+
+    }
+
 
 }

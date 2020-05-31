@@ -1,28 +1,30 @@
 package com.app.bricklist.ui.models
 
-import com.app.bricklist.data.models.InventoriesParts
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Brick(
 
 
-    val ColorID: Int,
-    val colorName: String,
-    var colorNamePL: String? = null,
+    var ColorID: Int = 0,
+    var colorName: String = "",
+    var colorNamePL: String = "",
 
     var Extra: String = "0",
-    val InventoryID: Int,
+    var InventoryID: Int? = null,
 
-    val ItemID: Int,
-    val itemName: String,
+    var ItemID: String = "0",
+    var itemName: String? = null,
     var itemNamePL: String? = null,
 
-    var QuantityInSet: Int,
+    var QuantityInSet: Int = 1,
     var QuantityInStore: Int = 0,
 
-    var TypeID: Int,
-    var typeName: String,
+    var TypeID: String? = null,
+    var typeName: String? = null,
     var typeNamePL: String? = null,
 
 //  InventoryParts ID
     var id: Int
-    )
+    ) : Parcelable

@@ -13,11 +13,11 @@ import com.app.bricklist.data.models.Parts
 interface BrickDao {
 
     //    Get all projects
-    @Query("SELECT * FROM inventories ORDER BY inventories.LastAccessed;")
+    @Query("SELECT * FROM inventories ORDER BY inventories.LastAccessed DESC;")
     fun getProjects(): List<Inventories>
 
     //    Get active project
-    @Query("SELECT * FROM inventories where inventories.active = 1 ORDER BY inventories.LastAccessed;")
+    @Query("SELECT * FROM inventories where inventories.active = 1 ORDER BY inventories.LastAccessed DESC;")
     fun getActiveProjects(): List<Inventories>
 
     //    Add project

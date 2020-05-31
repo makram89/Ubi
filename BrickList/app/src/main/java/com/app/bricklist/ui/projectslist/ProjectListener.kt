@@ -6,4 +6,9 @@ import com.app.bricklist.data.models.Inventories
 interface ProjectListener{
     fun onProjectClick(itemView: View, item: Inventories)
     fun onLongClick(itemView: View, item: Inventories)
+    fun onActivityChange(
+        itemView: View,
+        item: Inventories,
+        checked: Boolean
+    )
 }

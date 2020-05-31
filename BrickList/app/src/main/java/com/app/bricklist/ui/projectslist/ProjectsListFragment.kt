@@ -19,6 +19,7 @@ import com.app.bricklist.data.db.AppDatabase
 import com.app.bricklist.data.models.Inventories
 import com.app.bricklist.data.network.BrickApi
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.sql.Timestamp
 
 class ProjectsListFragment : Fragment(), ProjectListener {
 
@@ -85,7 +86,9 @@ class ProjectsListFragment : Fragment(), ProjectListener {
     override fun onProjectClick(itemView: View, item: Inventories) {
         val bundle = bundleOf("InventoryID" to item.id)
         findNavController().navigate(R.id.action_projectsList_to_projectDetails, bundle)
-        Log.d("CHECK", "Im In")
+        item.LastAccessed = System.currentTimeMillis()
+        viewModel.update(item)
+
     }
 
     override fun onLongClick(
@@ -94,6 +97,18 @@ class ProjectsListFragment : Fragment(), ProjectListener {
     ) {
         Log.d("CHECK", "Im In long")
 //        TODO("Not yet implemented")
+    }
+
+    override fun onActivityChange(itemView: View, item: Inventories, checked: Boolean) {
+        if(checked)
+        {
+            item.Active = 0
+        }
+        else
+        {
+            item.Active = 1
+        }
+        viewModel.update(item)
     }
 
 }

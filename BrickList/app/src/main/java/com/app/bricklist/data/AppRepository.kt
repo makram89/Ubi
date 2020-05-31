@@ -36,6 +36,8 @@ class AppRepository(private val appDatabase: AppDatabase, private val api: Brick
     fun getBrickName(code : String) = brickDao.getBrickName(code)
 
     fun getBrickColor(id: Int) =brickDao.getBrickColor(id)
+
+    fun updateProject(inventories: Inventories) = brickDao.insertOrUpdateProject(inventories)
 }
 
 

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.bricklist.data.models.Inventories
 import com.app.bricklist.databinding.RvItemProjectBinding
+import kotlinx.android.synthetic.main.rv_item_project.view.*
 
 class ProjectsAdapter(
     var projectsDataset: ArrayList<Inventories>,
@@ -43,6 +44,9 @@ class ProjectsAdapter(
                 listener.onLongClick(itemView, item)
                 return@setOnLongClickListener true
 
+            }
+            itemView.active_switch.setOnCheckedChangeListener { _, isChecked ->
+                listener.onActivityChange(itemView, item, isChecked)
             }
         }
     }

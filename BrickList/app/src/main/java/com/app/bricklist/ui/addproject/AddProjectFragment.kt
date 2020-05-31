@@ -1,5 +1,6 @@
 package com.app.bricklist.ui.addproject
 
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,12 +21,10 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.add_project_fragment.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import org.xml.sax.InputSource
 import java.io.StringReader
-
 import javax.xml.parsers.DocumentBuilderFactory
 
 
@@ -87,11 +86,10 @@ class AddProjectFragment : Fragment() {
     fun onAddClick() {
 
         GlobalScope.launch {
-            //        TODO STAMP
             val projectName = name_field.text.toString()
-            var project = Inventories(
+            val project = Inventories(
                 Active = 1,
-                LastAccessed = 1000,
+                LastAccessed = System.currentTimeMillis(),
                 Name = projectName,
                 id = viewModel.counter() + 1
             )
@@ -160,9 +158,16 @@ class AddProjectFragment : Fragment() {
                                 id = parts
                             )
                         )
-                        Log.d("PART loaded", id_p.toString())
+//                        Log.d("PART loaded", id_p.toString())
                         parts++
 
+                    } else {
+                        Snackbar.make(
+                            super.requireView(),
+                            "Problem with brick: %d, %s".format(currentId, currentColor),
+                            Snackbar.LENGTH_LONG
+                        )
+                            .setAction("Action", null).setDuration(20_000).show()
                     }
 
                 }

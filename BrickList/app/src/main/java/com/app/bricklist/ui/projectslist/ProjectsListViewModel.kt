@@ -39,6 +39,15 @@ class ProjectsListViewModel(private val repository: AppRepository) : ViewModel()
             }
         )
     }
+    fun update(inventories: Inventories){
+        Coroutines.ioThenMain({
+            repository.updateProject(inventories)
+        },
+            {
+
+            }
+        )
+    }
 
     fun counter() {
         GlobalScope.launch {

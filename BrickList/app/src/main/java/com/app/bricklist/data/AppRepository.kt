@@ -17,6 +17,7 @@ class AppRepository(private val appDatabase: AppDatabase, private val api: Brick
 
     //    DAO
     fun getProjects() = brickDao.getProjects()
+    fun getActiveProjects() = brickDao.getActiveProjects()
 
     fun getProjectBricks(id:Int) = brickDao.getProjectBricks(id)
 

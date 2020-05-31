@@ -29,6 +29,17 @@ class ProjectsListViewModel(private val repository: AppRepository) : ViewModel()
         )
     }
 
+    fun fetchActiveProjects() {
+        Coroutines.ioThenMain(
+            {
+                repository.getActiveProjects()
+            },
+            {
+                projectsMutable.value = it as ArrayList<Inventories>
+            }
+        )
+    }
+
     fun counter() {
         GlobalScope.launch {
             Log.d("CHECK CODES", repository.counter().toString())

@@ -1,30 +1,25 @@
 package com.app.bricklist
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
+import android.Manifest
 
 class MainActivity : AppCompatActivity() {
-
+    private val REQ_CODE = 101
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        val toolbar: Toolbar = findViewById(R.id.toolbar)
-//        setSupportActionBar(toolbar)
 
 
-//        fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-//        }
-
-        val navController = findNavController(R.id.nav_host_fragment)
+//        val navController = findNavController(R.id.nav_host_fragment)
+        setupPermissions()
 
     }
 
@@ -40,4 +35,35 @@ class MainActivity : AppCompatActivity() {
         navController.navigate(R.id.action_global_settingsFragment)
         return super.onOptionsItemSelected(item)
     }
+
+    fun makeRequest() {
+        ActivityCompat.requestPermissions(
+            this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),REQ_CODE)
+
+    }
+
+    fun setupPermissions() {
+        val permission =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            makeRequest()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        val permission =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            makeRequest()
+        }
+    }
+
+
+
 }

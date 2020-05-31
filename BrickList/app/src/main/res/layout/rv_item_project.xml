@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
 
@@ -12,21 +13,35 @@
 
   </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/project_rv_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="7dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="8dp">
 
-        <TextView
-            android:id="@+id/project_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{item.name}"
-            android:textSize="18sp"
-            tools:text="sokol" />
-    </LinearLayout>
+      <TextView
+          android:id="@+id/project_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="15dp"
+          android:layout_marginTop="10dp"
+          android:text="@{item.name}"
+          android:textSize="18sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          tools:text="sokol" />
+
+      <Switch
+          android:id="@+id/active_switch"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:layout_marginEnd="20dp"
+          android:checked="@{item.active == 1 ? false : true}"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

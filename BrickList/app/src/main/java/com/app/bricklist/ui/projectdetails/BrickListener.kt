@@ -6,5 +6,6 @@ interface BrickListener {
     fun onPlusClick(brick : Brick)
     fun onMinusClick(brick : Brick)
     fun valueUpdate(brick : Brick)
+    fun onSave()
 
 }

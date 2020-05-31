@@ -58,7 +58,14 @@ class ProjectsListFragment : Fragment(), ProjectListener {
                 ProjectListVMFactory(repository)
             ).get(ProjectsListViewModel::class.java)
 
-        viewModel.fetchProjects()
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        if(preferences.getBoolean("archive", false))
+        {
+            viewModel.fetchProjects()
+        }
+        else{
+            viewModel.fetchActiveProjects()
+        }
 
         val fab: FloatingActionButton = requireView().findViewById(R.id.fab)
         fab.setOnClickListener {

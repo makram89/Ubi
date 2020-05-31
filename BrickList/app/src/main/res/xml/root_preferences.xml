@@ -8,10 +8,11 @@
         android:singleLine="true"
         android:summary="http://fcds.cs.put.poznan.pl/MyWeb/"
         android:title="Prefix of URL" />
-    <SwitchPreferenceCompat
-        app:key="archive"
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="archive"
+        android:title="Archive"
         app:summaryOff="Show only active projects"
-        app:summaryOn="Show all projects"
-        app:title="Archive" />
+        app:summaryOn="Show all projects" />
 
 </PreferenceScreen>

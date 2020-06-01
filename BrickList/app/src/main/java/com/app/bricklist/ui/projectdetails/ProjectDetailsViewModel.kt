@@ -97,7 +97,7 @@ class ProjectDetailsViewModel(val repository: AppRepository) : ViewModel() {
         } else {
             bricksMutable.value?.sortWith(Comparator { lhs, rhs ->
                 // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-                if (lhs.codeType.toString() > rhs.codeType.toString()) -1 else if (lhs.id < rhs.id) 1 else 0
+                if (lhs.codeType > rhs.codeType) -1 else if (lhs.id < rhs.id) 1 else 0
             })
         }
 

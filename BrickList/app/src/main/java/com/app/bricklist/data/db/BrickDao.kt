@@ -55,4 +55,5 @@ interface BrickDao {
     @Query("select Code from Codes where ItemID=:id and ColorID=:color;")
     fun getCode(id: Int, color: Int): Int
 
+
 }

@@ -26,6 +26,7 @@ data class Brick(
     var typeNamePL: String? = null,
 
     var code: Int? = null,
+    var codeType: Int? = null,
 
 //  InventoryParts ID
     var id: Int

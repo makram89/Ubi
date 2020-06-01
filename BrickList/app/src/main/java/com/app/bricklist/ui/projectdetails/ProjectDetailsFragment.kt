@@ -3,7 +3,6 @@ package com.app.bricklist.ui.projectdetails
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +37,6 @@ class ProjectDetailsFragment : Fragment(), BrickListener {
 
     companion object {
         fun newInstance() = ProjectDetailsFragment()
-        const val CREATE_FILE = 1
     }
 
     private lateinit var viewModel: ProjectDetailsViewModel
@@ -79,15 +77,20 @@ class ProjectDetailsFragment : Fragment(), BrickListener {
         save_button.setOnClickListener {
             onSave()
         }
+
         viewModel.liveBricks.observe(viewLifecycleOwner, Observer { bricks ->
             view?.findViewById<RecyclerView>(R.id.rv_brick_list).also {
                 it?.adapter = BricksListRVAdapter(bricks, this@ProjectDetailsFragment)
                 it?.layoutManager = LinearLayoutManager(requireContext())
             }
-//            Log.d("CHECKbricks", bricks.size.toString())
+
         })
 
+        sort_by.setOnCheckedChangeListener { _, isChecked ->
+            onChange(isChecked)
+        }
     }
+
 
     override fun onPlusClick(brick: Brick) {
 
@@ -178,6 +181,19 @@ class ProjectDetailsFragment : Fragment(), BrickListener {
             .setDuration(12000)
             .show()
 
+    }
+
+    override fun onChange(checked: Boolean) {
+
+        viewModel.sortData(checked)
+
+        viewModel.liveBricks.observe(viewLifecycleOwner, Observer { bricks ->
+            view?.findViewById<RecyclerView>(R.id.rv_brick_list).also {
+                it?.adapter = BricksListRVAdapter(bricks, this@ProjectDetailsFragment)
+                it?.layoutManager = LinearLayoutManager(requireContext())
+            }
+
+        })
     }
 
 

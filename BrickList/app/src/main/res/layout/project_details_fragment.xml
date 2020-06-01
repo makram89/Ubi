@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.projectdetails.ProjectDetailsFragment">
 
+    <Switch
+        android:id="@+id/sort_by"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:showText="true"
+        android:text="Chosse sorting method"
+        android:textOff="type"
+        android:textOn="color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/save_button"
         android:layout_width="wrap_content"
@@ -23,6 +35,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_brick_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/rv_item_brick" />
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sort_by"
+        tools:listitem="@layout/rv_item_brick">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

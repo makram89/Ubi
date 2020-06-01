@@ -14,8 +14,8 @@ class ProjectDetailsViewModel(val repository: AppRepository) : ViewModel() {
     val liveBricks: LiveData<ArrayList<Brick>>
         get() = bricksMutable
 
-    fun fetchBricks(id: Int) {
 
+    fun fetchBricks(id: Int) {
 
         GlobalScope.launch {
 
@@ -69,6 +69,9 @@ class ProjectDetailsViewModel(val repository: AppRepository) : ViewModel() {
                     bricks[i].code = code
                 }
 
+                bricks[i].codeType = name.TypeID
+
+
 //            Create Bricks array and postValue() or value = xxx
                 bricksMutable.postValue(bricks)
 
@@ -83,4 +86,21 @@ class ProjectDetailsViewModel(val repository: AppRepository) : ViewModel() {
             repository.updateInventoryPart(brick.id, brick.QuantityInStore)
         }
     }
+
+    fun sortData(byColour: Boolean) {
+
+        if (byColour) {
+            bricksMutable.value?.sortWith(Comparator { lhs, rhs ->
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                if (lhs.ColorID > rhs.ColorID) -1 else if (lhs.id < rhs.id) 1 else 0
+            })
+        } else {
+            bricksMutable.value?.sortWith(Comparator { lhs, rhs ->
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                if (lhs.codeType.toString() > rhs.codeType.toString()) -1 else if (lhs.id < rhs.id) 1 else 0
+            })
+        }
+
+    }
+
 }

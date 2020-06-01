@@ -67,10 +67,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
 
-    implementation('com.squareup.retrofit2:converter-simplexml:2.6.1') {
-        exclude module: 'stax'
-        exclude module: 'stax-api'
-        exclude module: 'xpp3'
-    }
 
 }

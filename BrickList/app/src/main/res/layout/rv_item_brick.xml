@@ -30,7 +30,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"            >
+            app:layout_constraintTop_toBottomOf="@+id/iv_thumb">
 
             <Button
                 android:id="@+id/del_part_in_store"
@@ -48,7 +48,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/iv_thumb"
             android:layout_width="105dp"
             android:layout_height="0dp"
             android:contentDescription="@string/brick_thmub"
@@ -64,7 +64,7 @@
             android:orientation="vertical"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/iv_thumb"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView

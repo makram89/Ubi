@@ -1,6 +1,5 @@
 package com.app.bricklist.ui.projectdetails
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,7 +21,7 @@ class ProjectDetailsViewModel(val repository: AppRepository) : ViewModel() {
 
 //            First downland IP
             val parts = repository.getProjectBricks(id)
-            var bricks = ArrayList<Brick>()
+            val bricks = ArrayList<Brick>()
 
             for (part in parts) {
                 bricks.add(
@@ -47,8 +46,6 @@ class ProjectDetailsViewModel(val repository: AppRepository) : ViewModel() {
                 val name = repository.getBrickName(bricks[i].ItemID)
 //                IDE IS WRONG :)
                 if (name == null) {
-                    println("KAWABANGA")
-//                    TODO Proprer Info about error
                     continue
                 }
                 //Get color
@@ -62,10 +59,15 @@ class ProjectDetailsViewModel(val repository: AppRepository) : ViewModel() {
 
                 if (!name.NamePL.isNullOrEmpty()) {
                     bricks[i].itemNamePL = name.NamePL
-//                    TODO
-                    Log.d("ERROR", "No Polish name")
+//                    Log.d("ERROR", "No Polish name")
                 }
                 bricks[i].itemName = name.Name
+
+                val code = repository.getCode(name.id, bricks[i].ColorID)
+
+                if (code != null) {
+                    bricks[i].code = code
+                }
 
 //            Create Bricks array and postValue() or value = xxx
                 bricksMutable.postValue(bricks)

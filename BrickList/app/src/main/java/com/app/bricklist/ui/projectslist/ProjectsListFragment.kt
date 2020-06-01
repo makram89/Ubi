@@ -19,7 +19,6 @@ import com.app.bricklist.data.db.AppDatabase
 import com.app.bricklist.data.models.Inventories
 import com.app.bricklist.data.network.BrickApi
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.sql.Timestamp
 
 class ProjectsListFragment : Fragment(), ProjectListener {
 
@@ -95,8 +94,7 @@ class ProjectsListFragment : Fragment(), ProjectListener {
         itemView: View,
         item: Inventories
     ) {
-        Log.d("CHECK", "Im In long")
-//        TODO("Not yet implemented")
+//NOTHING HERE
     }
 
     override fun onActivityChange(itemView: View, item: Inventories, checked: Boolean) {

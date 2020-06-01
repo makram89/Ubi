@@ -35,7 +35,6 @@ class ProjectsAdapter(
     class ProjectItemHolder(
         private val binding: RvItemProjectBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        //        TODO add model instead of inventories
         fun bind(item: Inventories, listener: ProjectListener) {
             binding.item = item
             binding.executePendingBindings()

@@ -52,4 +52,7 @@ interface BrickDao {
     @Query("UPDATE inventoriesParts SET QuantityInStore = :value where inventoriesParts.id = :id")
     fun updateInventoryPart(id : Int, value : Int)
 
+    @Query("select Code from Codes where ItemID=:id and ColorID=:color;")
+    fun getCode(id: Int, color: Int): Int
+
 }

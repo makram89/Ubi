@@ -25,6 +25,8 @@ data class Brick(
     var typeName: String? = null,
     var typeNamePL: String? = null,
 
+    var code: Int? = null,
+
 //  InventoryParts ID
     var id: Int
     ) : Parcelable

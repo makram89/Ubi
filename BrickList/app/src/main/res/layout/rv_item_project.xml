@@ -40,6 +40,7 @@
           android:layout_marginTop="10dp"
           android:layout_marginEnd="20dp"
           android:checked="@{item.active == 1 ? false : true}"
+          android:text="Archive"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
